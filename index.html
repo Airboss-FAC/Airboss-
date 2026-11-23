@@ -57,8 +57,10 @@ input[aria-invalid="true"]{border-color:var(--crit);background:var(--crit-bg)}
 .hero{border-left:10px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center}
 .hero .eyebrow{font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:18px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .hero .who{font-family:var(--display);font-size:34px;font-weight:700;line-height:1.05;text-transform:uppercase}
-.hero .cdw{grid-row:1 / span 5;grid-column:2;text-align:right}
-.hero .cd{font-family:var(--display);font-weight:700;font-size:clamp(72px,17vw,150px);line-height:.95}
+.hero > *{grid-column:1;min-width:0}
+.hero .cdw{grid-row:1 / span 7;grid-column:2;text-align:right;align-self:center}
+.hero .flag.big{justify-self:start}
+.hero .cd{font-family:var(--display);font-weight:700;font-size:clamp(72px,13vw,150px);line-height:1.02;white-space:nowrap}
 .hero .cdl{font-family:var(--display);font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);margin-top:4px}
 .ptit{font-family:var(--display);font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:3px;overflow-wrap:anywhere}
 .hero .ptit{font-size:clamp(22px,4.5vw,32px);color:var(--ink)}
@@ -125,7 +127,7 @@ input.hms{font-variant-numeric:tabular-nums;letter-spacing:.03em}
 .row{display:grid;grid-template-columns:var(--cols);gap:8px;align-items:end}
 .f{display:flex;flex-direction:column;gap:3px;min-width:0}
 .f > span{display:flex;align-items:center;gap:5px;min-width:0;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;min-height:20px}
-.lt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lt{white-space:normal;overflow-wrap:break-word;line-height:1.2;min-width:0}
 .info{flex:none;width:18px;height:18px;min-height:18px;padding:0;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent);background:transparent;font:italic 700 12px/1 Georgia,serif;text-transform:none;cursor:help}
 .info:hover,.info:focus-visible{background:var(--accent);color:var(--accent-ink)}
 #tip{position:fixed;z-index:20;max-width:min(320px,calc(100vw - 16px));background:var(--ink);color:var(--bg);padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.4;box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none}
@@ -174,11 +176,47 @@ input:disabled,select:disabled{opacity:.45}
 .cer .cb button:not(.info){min-height:38px;padding:6px 10px}
 #vivo,#plan{display:flex;flex-direction:column;gap:16px}
 .prow{display:flex;flex-direction:column;gap:2px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.plist{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.pcard{border:1px solid var(--line);border-left:7px solid var(--tc,var(--line));border-radius:10px;background:var(--surface);overflow:hidden}
+.pcard.pt-bad{border-color:var(--crit);border-left-color:var(--crit)}
+.pcard .ph{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.pcard .pn{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--surface);display:grid;place-items:center;font-weight:700;font-size:14px}
+.pcard .phd{flex:1;min-width:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:600}
+.pcard .phd .ptt{color:var(--muted);font-weight:600;font-size:14px}
+.pcard .ppush{display:flex;flex-direction:column;align-items:flex-end;line-height:1.05}
+.pcard .ppush small{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pcard .ppush output{font-family:var(--display);font-size:24px;font-weight:700;color:var(--accent)}
+.pcard .ph > .rowbtns{flex:none;margin:0}
+.pcard .pbody{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+.pcard .grp{padding:10px 12px}
+.pcard .grp + .grp{border-left:1px dashed var(--line)}
+.pcard .gt{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:6px}
+.pcard .gg{display:grid;gap:8px;align-items:end}
+.pcard .g-when{grid-template-columns:1fr 1fr}
+.pcard .g-when .f.wide{grid-column:1 / -1}
+.pcard .g-who{grid-template-columns:1fr 1fr}
+.pcard .g-who .f:first-child{grid-column:1 / -1}
+.pcard .f select,.pcard .f input{width:100%;min-width:0}
+.pcard .pres{display:flex;flex-wrap:wrap;gap:6px 26px;padding:8px 12px;border-top:1px solid var(--line);background:var(--bg)}
+.pcard .pr{display:flex;flex-direction:column;gap:1px}
+.pcard .pr output{font-weight:700;font-size:15px}
+.pcard .pr > span,.pcard .pr > label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;align-items:center;gap:4px}
+.pcard .phd .tag{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.pcard .pr output.bad{color:var(--crit)}
+.pcard .pr-pos output{font-weight:500;color:var(--muted)}
+@media (max-width:760px){.pcard .pbody{grid-template-columns:1fr}.pcard .pres{display:grid;grid-template-columns:1fr 1fr}.pcard .ph{display:grid;grid-template-columns:auto minmax(0,1fr) auto;row-gap:6px}.pcard .ph > .rowbtns{grid-row:1;grid-column:3}.pcard .pr-pos{grid-column:1 / -1}.pcard .ppush{grid-column:1 / -1;flex-direction:row;align-items:baseline;gap:8px;padding-left:38px}.pcard .phd .ptt{font-size:13px;line-height:1.2}.pcard .g-when{grid-template-columns:1.5fr 1fr}.pcard .g-who{grid-template-columns:1.3fr 1fr}.pcard .grp + .grp{border-left:0;border-top:1px dashed var(--line)}.pcard .pres{gap:6px 18px}.pcard .pr-pos{flex-basis:100%}.pcard .ppush output{font-size:22px}}
 .res{display:flex;flex-wrap:wrap;gap:2px 28px;align-items:center}
 .res .f{flex-direction:row;align-items:center;gap:8px}
 .res output{min-height:30px}
 @media (min-width:821px){.rows .prow + .prow .row .f > span{display:none}}
 .cer .dl{display:flex;gap:4px}
+.card.welcome{border-left:6px solid var(--accent)}.card.welcome p{font-size:16px;margin:6px 0}
+.card.danger{border:1px solid var(--crit);border-left:6px solid var(--crit);margin-top:28px}
+.card.danger h2{color:var(--crit)}
+.warnbtn{border-color:var(--crit);color:var(--crit);font-weight:700}
+.warnbtn:not(:disabled):hover{background:var(--crit);color:#fff}
+.wipe-n{font-weight:700;margin:4px 0 8px}
+#wipe-in{max-width:220px;text-transform:uppercase;letter-spacing:.1em}
 .cer .nota{margin-top:6px;background:var(--surface);min-height:34px;padding:5px 9px;font-size:14px}
 .cer .cb,.cer .cxp{display:none}
 .cer.open .cb,.cer.open .cxp,.cer[data-s="curso"] .cb,.cer[data-s="sig"] .cb,.allcer .cer .cb{display:flex}
@@ -205,9 +243,11 @@ textarea{font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:var(--ink);ba
 .card.closed > header{margin-bottom:0}
 .card.closed > :not(header){display:none}
 .chev{min-width:34px;min-height:34px;padding:2px 6px;font-size:18px;border-color:transparent}
-.kv{display:grid;grid-template-columns:repeat(6,minmax(0,1fr)) minmax(172px,1.5fr);gap:6px 14px;margin:8px 0;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px 14px;margin:8px 0;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .kv span{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.kv b{display:block;font-weight:600;font-size:17px;overflow-wrap:anywhere}
+.kv b{display:block;font-weight:600;font-size:17px;overflow-wrap:break-word}
+.kv > div:last-child{grid-column:span 2;min-width:0}
+.kv > div:last-child input{width:100%;max-width:220px}
 .kv .k-push b{color:var(--accent);font-size:20px}
 .hero .kv{margin:10px 0}
 .hero .kv b{font-size:16px}.hero .kv .k-push b{font-size:18px;overflow-wrap:normal;white-space:nowrap}
@@ -265,7 +305,7 @@ input[type="color"]{padding:2px;cursor:pointer}
   .pass .btn{flex-direction:row}.pass .btn button{flex:1;min-height:46px}
   .hero .act button{width:100%;min-height:52px}
   .cer .nota,input,select{font-size:16px}
-  .cer .cb .f{flex:1 1 150px}.cer .cb .dl{flex-wrap:nowrap}.cer .cb .dl button{flex:1;min-width:58px;white-space:nowrap}.cer .cb input.hms{width:100%}
+  .cer .cb .f{flex:1 1 150px;min-width:max-content}.cer .cb .dl{flex-wrap:nowrap;flex:0 0 auto}.cer .cb .dl button{flex:1;min-width:58px;white-space:nowrap}.cer .cb input.hms{width:100%}
   .cer .cb > button{flex:1 1 130px}
   .pass .cd{font-size:30px;text-align:left}.pass .cdl{text-align:left}
 }
@@ -331,14 +371,16 @@ function defaults(){
       {id:34,cer:27,ancla:"inicio",off:0,equipo:3,punto:12}],
     marks:{date:"",real:{},given:{},delay:{},nota:{}}};
 }
+function blank(src){var d=defaults();d.equipos=[];d.puntos=[];d.cer=[];d.pasadas=[];d.ejemplo=false;d.titulo="Nuevo evento";d.log=[];
+  if(src)["inicio","preaviso","corr","sep","resMin","holdMin","stepMin","alMin","boss","sup"].forEach(function(k){if(src[k]!=null)d[k]=src[k];});return d;}
 function today(){var d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();}
 function load(){
   var c=[];
   try{var e=JSON.parse(document.getElementById("state").textContent);if(e&&e.v===1)c.push(e);}catch(x){}
   try{var l=JSON.parse(localStorage.getItem(KEY));if(l&&l.v===1)c.push(l);}catch(x){}
   c.sort(function(a,b){return (b.rev||0)-(a.rev||0);});
-  var s=c[0]||defaults();
-  if(s.ejemplo){var m=s.marks;s=defaults();s.marks=m;}
+  var s=c[0]||blank();
+  if(s.ejemplo)s=blank();
   s.puntos.forEach(function(q){if(q.dHI==null){var d=+q.dist||0;q.dIT=Math.round(d*4)/10;q.dHI=Math.round((d-q.dIT)*10)/10;}});
   if(!s.marks||s.marks.date!==today())s.marks={date:today(),real:{},given:{}};
   if(!s.marks.delay)s.marks.delay={};if(!s.marks.nota)s.marks.nota={};
@@ -623,6 +665,7 @@ function renderLive(){
   var act=C.ps.filter(function(o){return o.ok;}).sort(function(a,b){return a.push-b.push;});
   var hero=null;for(var i=0;i<act.length;i++)if(isPend(act[i],now)){hero=act[i];break;}
   heroId=hero?hero.id:null;
+  if(!S.equipos.length&&!S.cer.length&&!S.pasadas.length){document.getElementById("vivo").innerHTML='<div class="card welcome"><header><h2>Aplicación lista</h2></header><p>No hay ningún evento cargado. Para empezar, entre a <b>Editar datos</b> y llene las secciones en orden: Evento, Step y takeoff, Equipos, Holding / IP, Tiempos de la ceremonia y Pasadas.</p><p class="muted">Si quiere practicar primero, abra el evento de ejemplo; luego lo puede eliminar.</p><div class="foot"><button class="primary" data-act="tab" data-v="plan">Editar datos</button><button data-act="reset">Abrir evento de ejemplo</button><button data-act="ev-pick-w">Importar archivos</button></div></div>';LIVE=null;return;}
   var h='<div class="card"><header><h2>Step y takeoff</h2><span class="muted small">En holding '+S.holdMin+' min antes del inicio</span></header><div class="tw">'+depTable(C,"tt dt")+'</div></div>'+alertsHtml(C),f0=S.cer[0],r0=f0?S.marks.real[f0.id]:null;
   if(f0){var df=r0!=null?Math.round(r0-S.inicio):0;
     h+='<div class="card startbar" data-on="'+(r0==null?0:S.marks.pause?2:1)+'"><div><div class="sb-t" id="sb-t">'+(r0!=null?'Ceremonia iniciada a las '+fmtClock(r0):'Ceremonia sin iniciar')+'</div><div class="muted small">Hora prevista '+fmtClock(S.inicio)+(r0!=null?(Math.abs(df)<1?' · a tiempo':' · '+fmtDur(Math.abs(df))+(df>0?' después':' antes')+' de lo previsto')+'. Todos los puntos y pushes se calculan desde esa hora.':'. Al iniciar se toma la hora de este momento y se recalcula todo desde ahí.')+'</div></div>'+
@@ -802,11 +845,32 @@ function evCard(){
   var opts=ids.map(function(i){var t=i===S.eid?S.titulo:(L[i].titulo||"Evento");return '<option value="'+esc(i)+'"'+(i===S.eid?" selected":"")+'>'+esc(t)+'</option>';}).join("");
   return '<div class="card"><header><h2>Eventos guardados</h2><span class="muted small" id="ev-msg"></span></header><p class="intro">Cada evento guarda su plan y su registro en este dispositivo. «Descargar HTML» crea un archivo que se abre en cualquier navegador, con el programa y los datos; la otra persona también puede traerlo con «Importar archivos».</p>'+
     '<div class="cfg">'+fld("Evento abierto",'<select id="ev-sel" aria-label="Evento abierto">'+opts+'</select>')+'</div>'+
-    '<div class="foot" style="margin-top:12px"><button data-act="ev-new">Nuevo evento</button><button data-act="ev-dup">Duplicar este evento</button><button data-act="ev-export">Exportar</button><button data-act="ev-pick">Importar archivos</button><button data-act="ev-import">Pegar texto</button><button data-act="ev-del" id="btn-evdel">Eliminar este evento</button></div>'+
+    '<div class="foot" style="margin-top:12px"><button data-act="ev-new">Nuevo evento en blanco</button><button data-act="reset" id="btn-reset">Abrir evento de ejemplo</button><button data-act="ev-dup">Duplicar este evento</button><button data-act="ev-export">Exportar</button><button data-act="ev-pick">Importar archivos</button><button data-act="ev-import">Pegar texto</button><button data-act="ev-del" id="btn-evdel">Eliminar este evento</button></div>'+
     '<div id="ev-box" hidden><textarea id="ev-io" rows="6" aria-label="Texto del evento" spellcheck="false"></textarea><div class="foot"><button data-act="ev-copy" id="b-evcopy">Copiar texto</button><button data-act="dl-html" id="b-evdl">Descargar HTML</button><button data-act="ev-paste" id="b-evpaste">Importar este texto</button></div></div><input type="file" id="ev-pick" accept=".html,.htm,text/html,.json,application/json,text/plain,.txt" multiple hidden aria-label="Archivos de evento"></div>';
 }
 function saveBar(){var q=svState();return '<div class="card savebar" id="savebar" data-s="'+q.s+'" role="status"><div><div class="sv-n" id="sv-n">'+esc(S.titulo||"Sin nombre")+'</div><div class="sv-st" id="sv-st">'+esc(q.t)+'</div></div><div class="sv-b"><button class="primary" data-act="save" id="btn-save">Guardar</button><button data-act="dl-html" title="Descarga un archivo HTML con el programa y todos los datos, para abrirlo en cualquier navegador">Descargar HTML</button></div></div>';}
 function evMsg(t){var m=document.getElementById("ev-msg");if(m)m.textContent=t;}
+function allEvents(){var L=lib(),o=[];Object.keys(L).forEach(function(k){if(k!==S.eid)o.push(L[k]);});if(!S.ejemplo&&(S.equipos.length||S.cer.length||S.pasadas.length||S.puntos.length||L[S.eid]))o.push(S);return o;}
+function inCourse(){if(!S.cer.length||S.marks.real[S.cer[0].id]==null)return false;var C=calc(),t=nowSec();return C.ps.some(function(o){return o.ok&&o.given==null&&!o.abort&&o.tot>t;});}
+function saveBlob(fn,data,mime,done){
+  function viaLink(){try{var an=document.createElement("a");an.href=URL.createObjectURL(new Blob([data],{type:mime}));an.download=fn;document.body.appendChild(an);an.click();an.remove();done(true);}catch(x){done(false);}}
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(d){if(!d){viaLink();return;}d.save({filename:fn,data:data}).then(function(){done(true);},function(){viaLink();});},viaLink);}else viaLink();}
+function wipeAll(){
+  var wi=document.getElementById("wipe-in"),wm=document.getElementById("wipe-msg");
+  if(String(wi.value).trim().toUpperCase()!=="BORRAR"){wm.textContent="Escriba BORRAR para confirmar.";return;}
+  if(inCourse()){wm.textContent="No se puede borrar: la ceremonia está en curso y quedan pasadas pendientes. Termine o use «Reiniciar» primero.";return;}
+  var ev=allEvents(),d=new Date(),fn="respaldo-push-"+d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+"-"+pad(d.getHours())+pad(d.getMinutes())+".json";
+  function wipe(msg){var ui=null;try{ui=localStorage.getItem(KEY+"-ui");}catch(x){}
+    try{localStorage.removeItem(KEY);localStorage.removeItem(KEY+"-lib");}catch(x){}
+    clearTimeout(saveT);S=norm(blank());prevD={};heroId=null;S.rev=Date.now();saveLocal();renderPlan();evMsg(msg);
+    var c=document.getElementById("wipe-card");if(c)c.scrollIntoView({block:"center"});var m2=document.getElementById("wipe-msg"),b2=document.getElementById("wipe-box");if(b2&&m2){b2.hidden=false;document.getElementById("wipe-n").textContent="";m2.textContent=msg;}}
+  if(!ev.length){wipe("✔ Listo. No había eventos guardados; la aplicación quedó limpia.");return;}
+  var data=JSON.stringify({v:1,tipo:"respaldo-push",fecha:d.toISOString(),eventos:ev});
+  wm.textContent="Descargando respaldo…";document.getElementById("btn-wipe-go").disabled=true;
+  saveBlob(fn,data,"application/json",function(ok){
+    if(!ok){wm.textContent="No se pudo descargar el respaldo, así que no se borró nada. Use «Exportar» en cada evento y vuelva a intentar.";document.getElementById("btn-wipe-go").disabled=false;return;}
+    wipe("✔ Todo borrado. Respaldo descargado: «"+fn+"» ("+ev.length+(ev.length===1?" evento":" eventos")+"). Para recuperarlos use «Importar archivos» y elija ese archivo.");});
+}
 function evSwitch(n,msg){saveLocal();clearTimeout(saveT);S=norm(n);prevD={};S.rev=Date.now();svMsg=null;saveLocal();renderPlan();if(msg)evMsg(msg);}
 function evBox(mode){
   var b=document.getElementById("ev-box"),io=document.getElementById("ev-io");b.hidden=false;
@@ -821,6 +885,11 @@ function uniqTitle(t){
 }
 function importTxt(txt,quiet){
   var d;try{var mh=/<script type="application\/json" id="state">([\s\S]*?)<\/script>/.exec(txt);d=JSON.parse(mh?mh[1]:txt);}catch(x){d=null;}
+  if(d&&d.tipo==="respaldo-push"&&Array.isArray(d.eventos)){var empty=!S.equipos.length&&!S.cer.length&&!S.pasadas.length&&!S.puntos.length?S.eid:null,n=0,ot=S.titulo;
+    if(empty){var L0=lib();delete L0[empty];libSave(L0);S.ejemplo=true;S.titulo="";}
+    d.eventos.forEach(function(e){if(importTxt(JSON.stringify(e),true))n++;});
+    if(empty&&!n){S.ejemplo=false;S.titulo=ot;saveLocal();}
+    if(!quiet)evMsg("✔ Respaldo recuperado: "+n+(n===1?" evento.":" eventos."));return n>0?n:false;}
   if(!d||d.v!==1||!Array.isArray(d.equipos)||!Array.isArray(d.puntos)||!Array.isArray(d.cer)||!Array.isArray(d.pasadas)){if(!quiet)evMsg("Ese texto o archivo no es un evento de esta aplicación.");return false;}
   d.ejemplo=false;d.eid=typeof d.eid==="string"&&!lib()[d.eid]&&d.eid!==S.eid?d.eid:null;d.titulo=uniqTitle(String(d.titulo||"Evento importado"));
   evSwitch(d,quiet?null:"Evento importado.");return true;
@@ -828,7 +897,7 @@ function importTxt(txt,quiet){
 function importFiles(fl){
   var rd=fl.map(function(f){return new Promise(function(res){try{var fr=new FileReader();fr.onload=function(){res(String(fr.result));};fr.onerror=function(){res(null);};fr.readAsText(f);}catch(x){res(null);}});});
   Promise.all(rd).then(function(tx){
-    var ok=0,bad=0;tx.forEach(function(x){if(x!=null&&importTxt(x,true))ok++;else bad++;});
+    var ok=0,bad=0;tx.forEach(function(x){var r=x!=null&&importTxt(x,true);if(r)ok+=(r===true?1:r);else bad++;});
     evMsg((ok?"✔ "+ok+(ok>1?" eventos importados":" evento importado")+". Quedó abierto «"+S.titulo+"».":"")+(bad?(ok?" ":"")+bad+(bad>1?" archivos no son":" archivo no es")+" un evento de esta aplicación.":""));
   });
 }
@@ -870,7 +939,11 @@ function renderPlan(){
   h+='<div class="card"><header><h2>Tiempos por escuadrón</h2><span class="muted small">Consulta · holding → IP → tribuna</span></header>'+intro("No se llena. Sale de las distancias y velocidades de las secciones 2 y 3.")+'<div id="tt-plan"></div></div>';
   h+='<div class="card"><header><h2>Cómo se calcula</h2></header><p class="formula">Hora de push = hora sobre tribuna − tiempo de vuelo − reacción</p>'+
     '<ul class="small how"><li>Hora sobre tribuna = inicio del punto + desfase, o final del punto − desfase, o la hora exacta que usted escriba.</li><li>Tiempo de vuelo = distancia ÷ velocidad sobre el terreno. Desde el holding la distancia es holding → IP → tribuna; desde el IP, solo IP → tribuna.</li><li>Velocidad sobre el terreno = velocidad de pasada − viento de frente en ruta.</li><li>Cruce del IP = hora sobre tribuna − tiempo del tramo IP → tribuna.</li><li>Takeoff = inicio de la ceremonia − minutos en holding − tiempo de vuelo aeródromo → holding − margen de alistamiento. Ese tiempo de vuelo = distancia ÷ velocidad crucero, o la de pasada si no hay crucero. Step = takeoff − minutos de step.</li><li>Playtime: en vuelo al pasar = hora sobre tribuna − takeoff planeado. Si es mayor que el playtime del equipo, la pasada avisa «No alcanza».</li><li>Al tocar «Pasó sobre tribuna», la hora real queda como referencia. La diferencia entre la hora real y la prevista (por ejemplo +0:45 si pasó tarde) corre el punto siguiente y todo lo posterior, incluidas las horas de push; si el punto no tenía hora real de inicio, también se corre el propio punto. Si el punto siguiente ya tiene hora real fijada, esa hora manda. Las pasadas con hora exacta manual no mueven la ceremonia.</li><li>Inicio de cada punto = inicio del anterior + su duración + su demora. Si usted fija la hora real de un punto, ese punto y los siguientes se recalculan desde ahí.</li></ul></div>';
-  h+='<div class="foot"><button data-act="clear" id="btn-clear">Borrar marcas y demoras de hoy</button><button data-act="reset" id="btn-reset">Restaurar datos de ejemplo</button></div>';
+  h+='<div class="foot"><button data-act="clear" id="btn-clear">Borrar marcas y demoras de hoy</button></div>';
+  h+='<div class="card danger" id="wipe-card"><header><h2>Borrar todo y empezar de cero</h2></header><p class="intro">Borra <b>todos</b> los eventos guardados en este dispositivo, las marcas en vivo y los registros. Deja la aplicación limpia, como recién instalada. Antes de borrar se descarga un <b>archivo de respaldo</b> con todos sus eventos: para recuperarlos, use «Importar archivos» y elija ese archivo.</p>'+
+    '<div class="foot"><button class="warnbtn" data-act="wipe-open" id="btn-wipe">Borrar todo…</button></div>'+
+    '<div id="wipe-box" hidden><p class="wipe-n" id="wipe-n"></p>'+fld("Para confirmar escriba BORRAR",'<input id="wipe-in" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Escriba BORRAR para confirmar" placeholder="BORRAR">')+
+    '<div class="foot"><button class="warnbtn" data-act="wipe-go" id="btn-wipe-go" disabled>Descargar respaldo y borrar todo</button><button data-act="wipe-cancel">Cancelar</button></div><p class="small" id="wipe-msg" role="status"></p></div></div>';
   document.getElementById("plan").innerHTML=h;
   collapsify("plan");
   renderPasadas();
@@ -880,20 +953,26 @@ function renderPasadas(){
   var e=document.getElementById("pas-rows");if(!e)return;
   var oc=S.cer.map(function(c,i){return [c.id,(i+1)+". "+c.nombre];}),oe=S.equipos.map(function(x){return [x.id,x.nombre+acft(x)];}),op=S.puntos.map(function(x){return [x.id,x.nombre+" / "+ipName(x)];});
   var ordP=S.pasadas.map(function(p,i){var k=S.cer.findIndex(function(c){return c.id===p.cer;});return {p:p,k:k<0?999:k,i:i};}).sort(function(a,b){return a.k-b.k||a.i-b.i;}).map(function(x){return x.p;});
-  e.innerHTML='<div class="rows" style="--cols:1.7fr 1.3fr 1fr 1.4fr 1.4fr .9fr auto">'+ordP.map(function(p){
+  e.innerHTML='<div class="plist">'+ordP.map(function(p,ix){
     function withNone(o,v){return byId({cer:S.cer,equipo:S.equipos,punto:S.puntos}[o.k],v)?o.l:[[v,"— elegir —"]].concat(o.l);}
-    var man=p.ancla==="hora";
+    var man=p.ancla==="hora",tm=byId(S.equipos,p.equipo);
     function dis(s,c){return c?s.replace(/^<(input|select)/,"<$1 disabled"):s;}
-    return '<div class="prow"><div class="row">'+fld("Pasa en el punto",dis(sel("pasadas",p.id,"cer",p.cer,withNone({k:"cer",l:oc},p.cer)),man),"wide")+
-      fld("Momento",sel("pasadas",p.id,"ancla",p.ancla,[["inicio","Minuto del punto (desde su inicio)"],["hora","Hora local exacta"],["pct","A un % del punto"],["fin","Antes del final del punto"]]))+
-      fld(man?"Hora local":p.ancla==="pct"?"% del punto":p.ancla==="fin"?"Tiempo antes del final":"Minuto del punto",man?'<input type="text" inputmode="numeric" class="hms" placeholder="HH:MM:SS" maxlength="11" autocomplete="off" id="pasadas-'+p.id+'-hora" data-c="pasadas" data-id="'+p.id+'" data-f="hora" data-t="time" aria-label="Hora exacta sobre tribuna" value="'+(p.hora!=null?fmtClock(p.hora):"")+'">':p.ancla==="pct"?inp("pasadas",p.id,"pct",p.pct==null?50:p.pct,"num"):inp("pasadas",p.id,"off",p.off,"dur"))+
-      fld("Equipo",sel("pasadas",p.id,"equipo",p.equipo,withNone({k:"equipo",l:oe},p.equipo)))+
-      fld("Ruta",sel("pasadas",p.id,"punto",p.punto,withNone({k:"punto",l:op},p.punto)))+fld("Push desde",sel("pasadas",p.id,"desde",p.desde||"holding",[["holding","Holding"],["ip","IP"]]))+
-      del("pasadas",p.id)+'</div><div class="res"><div class="f">'+lab("Vuelo")+'<output data-k="fly" data-id="'+p.id+'"></output></div>'+
-      '<div class="f">'+lab("Sobre tribuna")+'<output data-k="tot" data-id="'+p.id+'"></output></div>'+
-      '<div class="f">'+lab("Hora de push")+'<output class="push" data-k="push" data-id="'+p.id+'"></output></div>'+
-      '<div class="f">'+lab("Posición en el punto")+'<output data-k="pos" data-id="'+p.id+'"></output></div>'+
-      '<div class="f">'+lab("Playtime")+'<output data-k="pt" data-id="'+p.id+'"></output></div></div></div>';
+    return '<div class="pcard" id="pc-'+p.id+'" style="--tc:'+esc(tm?tcolor(tm):"var(--line)")+'">'+
+      '<div class="ph"><span class="pn">'+(ix+1)+'</span><output class="phd" data-k="phead" data-id="'+p.id+'"></output>'+
+      '<span class="ppush"><small>Push</small><output class="push" data-k="push" data-id="'+p.id+'"></output></span>'+del("pasadas",p.id)+'</div>'+
+      '<div class="pbody"><div class="grp"><div class="gt">Cuándo pasa</div><div class="gg g-when">'+
+        fld("Pasa en el punto",dis(sel("pasadas",p.id,"cer",p.cer,withNone({k:"cer",l:oc},p.cer)),man),"wide")+
+        fld("Momento",sel("pasadas",p.id,"ancla",p.ancla,[["inicio","Minuto del punto"],["hora","Hora local exacta"],["pct","% del punto"],["fin","Antes del final"]]))+
+        fld(man?"Hora local":p.ancla==="pct"?"% del punto":p.ancla==="fin"?"Tiempo antes del final":"Minuto del punto",man?'<input type="text" inputmode="numeric" class="hms" placeholder="HH:MM:SS" maxlength="11" autocomplete="off" id="pasadas-'+p.id+'-hora" data-c="pasadas" data-id="'+p.id+'" data-f="hora" data-t="time" aria-label="Hora exacta sobre tribuna" value="'+(p.hora!=null?fmtClock(p.hora):"")+'">':p.ancla==="pct"?inp("pasadas",p.id,"pct",p.pct==null?50:p.pct,"num"):inp("pasadas",p.id,"off",p.off,"dur"))+
+      '</div></div><div class="grp"><div class="gt">Quién y por dónde</div><div class="gg g-who">'+
+        fld("Equipo",sel("pasadas",p.id,"equipo",p.equipo,withNone({k:"equipo",l:oe},p.equipo)))+
+        fld("Ruta",sel("pasadas",p.id,"punto",p.punto,withNone({k:"punto",l:op},p.punto)))+
+        fld("Push desde",sel("pasadas",p.id,"desde",p.desde||"holding",[["holding","Holding"],["ip","IP"]]))+
+      '</div></div></div>'+
+      '<div class="pres"><div class="pr">'+lab("Sobre tribuna")+'<output data-k="tot" data-id="'+p.id+'"></output></div>'+
+      '<div class="pr">'+lab("Vuelo")+'<output data-k="fly" data-id="'+p.id+'"></output></div>'+
+      '<div class="pr">'+lab("Playtime")+'<output data-k="pt" data-id="'+p.id+'"></output></div>'+
+      '<div class="pr pr-pos">'+lab("Posición en el punto")+'<output data-k="pos" data-id="'+p.id+'"></output></div></div></div>';
   }).join("")+'</div>'+(S.pasadas.length?"":'<div class="muted">No hay pasadas. Agregue la primera.</div>');
   refreshCalc();
 }
@@ -904,13 +983,14 @@ function refreshCalc(){
   document.querySelectorAll('#plan input[data-f="holdH"]').forEach(function(x){for(var i=0;i<dd.length;i++)if(dd[i].t.id===+x.dataset.id){x.placeholder=fmtClock(dd[i].auto).slice(0,5);x.title="Vacío = automática ("+fmtClock(dd[i].auto).slice(0,5)+"). Escriba una hora para fijarla.";}});
   document.querySelectorAll("#plan output[data-k]").forEach(function(o){
     var id=+o.dataset.id,k=o.dataset.k,t="";
+    if(k==="phead"){var pp=byId(S.pasadas,id),tt=pp&&byId(S.equipos,pp.equipo),cd=document.getElementById("pc-"+id);o.innerHTML=(tt?tag(tt):'<span class="muted">Sin equipo</span>')+'<span class="ptt">'+esc(pp?ptit(pp):"")+'</span>';if(cd)cd.style.setProperty("--tc",tt?tcolor(tt):"var(--line)");return;}
     if(k==="np"){var cn=S.pasadas.filter(function(x){return x.cer===id&&x.ancla!=="hora";}).length;t=cn?"✈ "+cn+(cn>1?" pasadas":" pasada"):"sin pasada";o.style.color=cn?"":"var(--warn)";var bq=document.querySelector('button[data-act="del-pas"][data-id="'+id+'"]');if(bq)bq.disabled=!cn;}
     else if(k==="st"){for(var i=0;i<S.cer.length;i++)if(S.cer[i].id===id)t=fmtClock(C.st[i]);}
     else if(k==="pt"){var po=byId(C.ps,id),qi=ptInfo(po,C);o.classList.remove("bad");o.style.color="";
       if(!qi)t=po&&po.ok&&!po.abort?"sin playtime":"—";
-      else if(qi.s==="bad"){t="NO ALCANZA · faltan "+fmtDur(-qi.rem);o.classList.add("bad");}
-      else if(qi.s==="warn"){t="justo · quedan "+fmtDur(qi.rem);o.style.color="var(--warn)";}
-      else t="alcanza · quedan "+fmtDur(qi.rem);}
+      else if(qi.s==="bad"){t="⛔ NO ALCANZA · faltan "+fmtDur(-qi.rem);o.classList.add("bad");}
+      else if(qi.s==="warn"){t="⚠ justo · quedan "+fmtDur(qi.rem);o.style.color="var(--warn)";}
+      else t="✓ alcanza · quedan "+fmtDur(qi.rem);var pcd=o.closest&&o.closest(".pcard");if(pcd)pcd.classList.toggle("pt-bad",!!qi&&qi.s==="bad");}
     else if(k==="pos"){var pq=byId(C.ps,id);o.classList.remove("bad");
       if(pq&&pq.ok&&pq.ci>=0){var rel=pq.tot-C.st[pq.ci],len=C.en[pq.ci]-C.st[pq.ci],pc=len>0?Math.round(rel/len*100):0;t=(rel<0?"−"+fmtDur(-rel):"min "+fmtDur(rel))+" de "+fmtDur(len)+" ("+pc+" %)"+(pq.man?" · hora fija":" · "+fmtClock(pq.tot)+" hora local");if(rel<-0.5||rel>len+0.5){t+=" · fuera del punto";o.classList.add("bad");}}
       else t="—";}
@@ -999,7 +1079,7 @@ function commitTot(t,e){
   if(isFinite(v)&&ps){if(ps.ancla!=="hora")ps.autoAncla=ps.ancla;ps.ancla="hora";ps.hora=v;logEv("Hora sobre tribuna de "+pname(ps.id)+" fijada a mano: "+fmtClock(v));S.ejemplo=false;prevD={};touch();t.dataset.orig=t.value;}
   later(e);
 }
-root.addEventListener("input",function(e){var t=e.target;if(!t.dataset||!t.dataset.c)return;
+root.addEventListener("input",function(e){var t=e.target;if(t.id==="wipe-in"){var g=document.getElementById("btn-wipe-go");if(g)g.disabled=String(t.value).trim().toUpperCase()!=="BORRAR";return;}if(!t.dataset||!t.dataset.c)return;
   if(t.dataset.c==="nota"){S.marks.nota[+t.dataset.id]=t.value;touch();return;}
   if(t.dataset.c==="real"||t.dataset.c==="ptot")return;
   applyInput(t,false);});
@@ -1063,6 +1143,9 @@ root.addEventListener("click",function(e){
     else{if(was==="Punto suprimido"&&cc&&S.marks.delay[id]===-cc.dur)delete S.marks.delay[id];S.marks.nota[id]=k;if(k==="Punto suprimido"&&cc)S.marks.delay[id]=-cc.dur;logEv("Novedad en "+cname(id)+": "+k+(k==="Punto suprimido"?" (duración 0:00; lo que sigue se adelanta)":""));}
     OPEN[id]=true;prevD={};touch();renderLive();}
   else if(a==="allcer"){UI.allCer=!UI.allCer;try{localStorage.setItem(KEY+"-ui",JSON.stringify(UI));}catch(x){}renderLive();}
+  else if(a==="wipe-open"){var wb=document.getElementById("wipe-box");wb.hidden=false;var nE=allEvents().length;document.getElementById("wipe-n").textContent=nE?"Se borrarán "+nE+(nE===1?" evento guardado":" eventos guardados")+" en este dispositivo"+(S.log.length?", con sus registros":"")+".":"No hay eventos guardados: solo se limpiará la aplicación.";var wi=document.getElementById("wipe-in");wi.value="";wi.focus();document.getElementById("btn-wipe-go").disabled=true;}
+  else if(a==="wipe-cancel"){document.getElementById("wipe-box").hidden=true;}
+  else if(a==="wipe-go"){wipeAll();}
   else if(a==="cer-reset"){logEv("Ajuste quitado en "+cname(id));var cx=calc(),ix=-1;S.cer.forEach(function(c,k){if(c.id===id)ix=k;});if(ix>=0&&cx.der[ix])delete S.marks.over[cx.der[ix].pid];delete S.marks.real[id];delete S.marks.delay[id];delete S.marks.nota[id];prevD={};touch();renderLive();}
   else if(a==="add"){
     var n=++S.nid;
@@ -1083,10 +1166,11 @@ root.addEventListener("click",function(e){
     if(j>=0&&j<S.cer.length){var tmp=S.cer[i];S.cer[i]=S.cer[j];S.cer[j]=tmp;touch();renderPlan();var fb=document.querySelector('button[data-act="'+a+'"][data-id="'+id+'"]');if(fb)fb.focus();}
   }
   else if(a==="clear")twoStep(b,"clear","Toque otra vez para borrar",function(){S.marks=null;norm(S);prevD={};touch();renderPlan();});
-  else if(a==="reset")twoStep(b,"reset","Toque otra vez para restaurar",function(){S=norm(defaults());prevD={};touch();renderPlan();});
+  else if(a==="reset"){var nx=defaults();nx.ejemplo=false;nx.titulo=uniqTitle("Evento de ejemplo");evSwitch(nx,"Se abrió un evento de ejemplo para practicar. Sus otros eventos no cambiaron.");if(tab==="vivo")renderLive();}
+  else if(a==="ev-pick-w"){tab="plan";showTab();var pw=document.getElementById("ev-pick");if(pw)pw.click();}
   else if(a==="save")saveNow(b);
   else if(a==="adv"){UI.adv=!UI.adv;try{localStorage.setItem(KEY+"-ui",JSON.stringify(UI));}catch(x){}renderPlan();}
-  else if(a==="ev-new"){var n=defaults();n.ejemplo=false;n.titulo="Nuevo evento";evSwitch(n,"Evento nuevo creado con datos de ejemplo. Cámbiele el nombre y los datos.");}
+  else if(a==="ev-new"){var n=blank(S);n.titulo=uniqTitle("Nuevo evento");evSwitch(n,"Evento nuevo en blanco. Escriba el nombre y llene las secciones en orden. Sus otros eventos siguen guardados.");}
   else if(a==="ev-dup"){var c2=JSON.parse(JSON.stringify(S));c2.eid=null;c2.titulo=S.titulo+" (copia)";c2.ejemplo=false;c2.marks=null;c2.log=[];evSwitch(c2,"Evento duplicado.");}
   else if(a==="ev-export")evBox("export");
   else if(a==="ev-pick"){var pk=document.getElementById("ev-pick");if(pk){pk.value="";pk.click();}}
